@@ -13,6 +13,7 @@ var (
 	token          string
 	to             string
 	importTemplate = `import {
+  # Record: {{ .Type }} {{ .Name }} {{ .Value }}
   from = "{{ .ID }}"
   to   = {{ .To }}
 }`
@@ -39,8 +40,11 @@ func New() *cobra.Command {
 
 			for _, r := range records {
 				data := map[string]any{
-					"ID": r.ID,
-					"To": to,
+					"ID":    r.ID,
+					"To":    to,
+					"Type":  r.Type,
+					"Name":  r.Name,
+					"Value": r.Value,
 				}
 				if err := tmpl.Execute(&out, data); err != nil {
 					return fmt.Errorf("execute import template: %w", err)

@@ -27,6 +27,7 @@ func New(apiToken string) *Client {
 
 type Record struct {
 	ID      string
+	Name    string
 	Type    string
 	Value   string
 	Proxied bool
@@ -44,6 +45,7 @@ func (c *Client) Records(ctx context.Context, zone string) ([]Record, error) {
 	return slice.Map(records.Result, func(record dns.RecordResponse) Record {
 		return Record{
 			ID:      record.ID,
+			Name:    record.Name,
 			Type:    string(record.Type),
 			Value:   record.Content,
 			Proxied: record.Proxied,
