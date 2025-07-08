@@ -2,8 +2,8 @@ package root
 
 import (
 	"fmt"
-	"html/template"
 	"strings"
+	"text/template"
 
 	"github.com/henrywhitakercommify/cfimport/internal/dns"
 	"github.com/spf13/cobra"
@@ -13,8 +13,8 @@ var (
 	token          string
 	to             string
 	importTemplate = `import {
-	from = "{{ .ID }}"
-	to = {{ .To }}
+  from = "{{ .ID }}"
+  to   = {{ .To }}
 }`
 )
 
